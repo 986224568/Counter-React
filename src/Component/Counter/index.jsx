@@ -1,5 +1,7 @@
 import React from 'react';
-
+import store from '../redux/store/configStore';
+import {increaseCount} from "../redux/action/count"
+import {decreaseCount} from "../redux/action/count"
 class Counter extends React.Component {
     constructor(props) {
         super(props)

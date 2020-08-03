@@ -1,7 +1,7 @@
 import React from 'react';
 import Counter from '../Counter'
-import store from "../../redux/store/configStore"
-import {increaseCount, init} from "../../redux/action/count"
+import store from "../redux/store/configStore"
+import {increaseCount, init} from "../redux/action/count"
 
 class CounterGroup extends React.Component {
 
