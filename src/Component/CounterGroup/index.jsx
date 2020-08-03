@@ -1,55 +1,51 @@
 import React from 'react';
-import Counter from '../Counter';
+import Counter from '../Counter'
 
 class CounterGroup extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {groupSize : 0, TotalValue : 0}
+        this.state = {size:0, total:0};
     }
 
     handleResize = (event) => {
         this.setState({
-            value: !event.target.value ? 0 : parseInt(event.target.value) >= 0 ? parseInt(event.target.value) : 0,
-            TotalValue: 0
+            size: !event.target.value ? 0 : parseInt(event.target.value)>=0 ?  parseInt(event.target.value): 0,
+            total: 0
         })
+        
     }
-    
-    handleOnIncrease = () => {
+
+    handleOnIncreate = () => {
         this.setState((prevState) => ({
-            TotalValue : prevState.TotalValue + 1
+            total : prevState.total + 1
         }));
     }
 
-    handleOnIncrease = () => {
+    handleOnDecreate = () =>{
         this.setState((prevState) => ({
-            TotalValue : prevState.TotalValue + 1
-        }));
-    }
-
-    handleOnDecrease = () => {
-        this.setState((prevState) => ({
-            TotalValue : prevState.TotalValue - 1
+            total : prevState.total - 1
         }));
     }
 
     render() {
-        const initArray = [...Array(this.state.groupSize).keys()];
-        return <div>
-            <label>
-                GroupSize:
-                <input onBlur = {this.handleResize} defaultValue = {0}></input>
-            </label>
-            <br></br>
-            <label>
-                TotalValue : {this.state.TotalValue}
-            </label>
-            {
-                initArray.map(key => <Counter groupSize = {this.state.groupSize} onIncrease = {this.handleOnIncrease} onDecrease = {this.handleOnDecrease} key = {key}/>)
-            }
-        </div>
-    }
+        const initArray = [...Array(this.state.size).keys()];
 
+        return (
+            <div>
+                <label>
+                    Group Size:
+                    <input onBlur={this.handleResize} defaultValue={0}></input>
+                </label><br></br>
+                <label>
+                    Total Number: {this.state.total}
+                </label>
+                    {
+                        initArray.map(key => <Counter onIncrease={this.handleOnIncreate} onDecrease={this.handleOnDecreate} key = {key} groupSize={this.state.size} />)
+                    }
+            </div>
+        );
+    }
 }
 
 export default CounterGroup;
