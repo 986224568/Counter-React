@@ -15,22 +15,15 @@ class CounterGroup extends React.Component {
             size: !event.target.value ? 0 : parseInt(event.target.value)>=0 ?  parseInt(event.target.value): 0,
             total: 0
         })
-        
-    }
-
-    handleOnIncreate = () => {
-        this.setState((prevState) => ({
-            total : prevState.total + 1
-        }));
-    }
-
-    handleOnDecreate = () =>{
-        this.setState((prevState) => ({
-            total : prevState.total - 1
-        }));
+        store.dispatch(init());
     }
 
     render() {
+        store.subscribe(() =>{
+            this.setState({
+                total:store.getState()
+            })
+        })
         const initArray = [...Array(this.state.size).keys()];
 
         return (
