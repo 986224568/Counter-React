@@ -1,11 +1,13 @@
 import React from 'react';
 import Counter from '../Counter'
+import store from "../../redux/store/configStore"
+import {increaseCount, init} from "../../redux/action/count"
 
 class CounterGroup extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {size:0, total:0};
+        this.state ={total:store.getState(),size:0}
     }
 
     handleResize = (event) => {
@@ -41,7 +43,7 @@ class CounterGroup extends React.Component {
                     Total Number: {this.state.total}
                 </label>
                     {
-                        initArray.map(key => <Counter onIncrease={this.handleOnIncreate} onDecrease={this.handleOnDecreate} key = {key} groupSize={this.state.size} />)
+                        initArray.map(key =><Counter count={this.state.size}   key={key}/>)
                     }
             </div>
         );
